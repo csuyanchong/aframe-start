@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube3d starter scene</title>
+    <script src="./node_modules/aframe/dist/aframe-v1.4.2.js"></script>
+    <script src="./scaleOnMouseEnter.js"></script>
+    <!-- <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script> -->
+</head>
+
+<body>
+    <a-scene>
+        <!-- 资源管理 -->
+        <a-assets>
+            <img id="texBox" src="./res/texture/floor/WoodFloor051_1K-JPG_Color.jpg" alt="">
+            <img id="texSky" src="./res/texture/sky/sechelt.jpg" alt="">
+            <img id="texGround" src="./res/texture/floor/floor.jpg" alt="">
+            <audio id="audioBd" src="./res/audio/background/backgroundnoise.wav" preload="auto" loop="false"></audio>
+        </a-assets>
+
+        <!-- 构造场景 -->
+        <a-plane src="#texGround" repeat="10 10" rotation="-90 0 0" width="30" height="30"></a-plane>
+
+        <a-box src="#texBox" position="0 2 -5" rotation="0 45 45" scale="2 2 2"
+            animation__position="property: object3D.position.y; to: 2.5; dir: alternate; dur: 2000; loop: true"
+            animation__mouseenter="property: scale; to: 3, 3, 3; dur: 300; startEvents:mouseenter"
+            animation__mouseleave="property: scale; to: 2, 2, 2; dur: 300; startEvents:mouseleave"> </a-box>
+
+        <!-- 环境和灯光 -->
+        <!-- <a-entity environment="preset: forest; dressingAmount: 500"></a-entity> -->
+        <a-sky src="#texSky"></a-sky>
+        <a-light type="ambient" color="#445451"></a-light>
+        <a-light type="point" intensity="2.0" position="0 6 0"></a-light>
+
+        <!--相机-->
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+
+        <!-- 音频 -->
+        <a-sound src="#audioBd" autoplay="true"></a-sound>
+
+        <!-- 文本 -->
+        <!-- <a-text value="Hello, Welcome to my 3D World!" color="#BBB" position="0 1 -2" tab-size="24"></a-text> -->
+        <a-entity text="value: Hello, A-Frame!; color: #BBB" position="-0.9 0.2 -3" scale="1.5 1.5 1.5"></a-entity>
+    </a-scene>
+</body>
+
+</html>
